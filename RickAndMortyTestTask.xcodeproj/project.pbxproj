@@ -28,6 +28,7 @@
 		ABCAE42A2A8EB58F00BEE310 /* CharacterListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE4292A8EB58F00BEE310 /* CharacterListPresenter.swift */; };
 		ABCAE42C2A8EB89A00BEE310 /* CharacterListModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE42B2A8EB89A00BEE310 /* CharacterListModuleBuilder.swift */; };
 		ABCAE42E2A8EC2EA00BEE310 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE42D2A8EC2EA00BEE310 /* DetailsViewModel.swift */; };
+		ABCAE4302A8ED35200BEE310 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE42F2A8ED35100BEE310 /* SectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		ABCAE4292A8EB58F00BEE310 /* CharacterListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListPresenter.swift; sourceTree = "<group>"; };
 		ABCAE42B2A8EB89A00BEE310 /* CharacterListModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListModuleBuilder.swift; sourceTree = "<group>"; };
 		ABCAE42D2A8EC2EA00BEE310 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		ABCAE42F2A8ED35100BEE310 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,7 @@
 				ABCAE4162A8E348300BEE310 /* Core */,
 				ABCAE4172A8E348C00BEE310 /* Service */,
 				ABCAE4282A8EA07F00BEE310 /* Model */,
-				ABCAE41D2A8E4BB500BEE310 /* DetailsView.swift */,
+				ABCAE42F2A8ED35100BEE310 /* SectionHeaderView.swift */,
 				ABCAE40C2A8E2BDF00BEE310 /* UIColor + Extension.swift */,
 				ABCAE41A2A8E415F00BEE310 /* UIImage + Extension.swift */,
 				ABCAE3FF2A8E26B600BEE310 /* Assets.xcassets */,
@@ -134,6 +136,7 @@
 		ABCAE4252A8E9C6E00BEE310 /* SUI */ = {
 			isa = PBXGroup;
 			children = (
+				ABCAE41D2A8E4BB500BEE310 /* DetailsView.swift */,
 				ABCAE4232A8E9C1900BEE310 /* EpisodesView.swift */,
 				ABCAE42D2A8EC2EA00BEE310 /* DetailsViewModel.swift */,
 				ABCAE42B2A8EB89A00BEE310 /* CharacterListModuleBuilder.swift */,
@@ -229,6 +232,7 @@
 				ABCAE4192A8E3BCB00BEE310 /* ImageLoader.swift in Sources */,
 				ABCAE3FB2A8E26B500BEE310 /* CharacterListViewController.swift in Sources */,
 				ABCAE4132A8E33F400BEE310 /* RickNMortyLoader.swift in Sources */,
+				ABCAE4302A8ED35200BEE310 /* SectionHeaderView.swift in Sources */,
 				ABCAE42A2A8EB58F00BEE310 /* CharacterListPresenter.swift in Sources */,
 				ABCAE41E2A8E4BB500BEE310 /* DetailsView.swift in Sources */,
 				ABCAE4222A8E9B1100BEE310 /* InfoView.swift in Sources */,

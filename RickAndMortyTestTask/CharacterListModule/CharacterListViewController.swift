@@ -48,11 +48,15 @@ class CharacterListViewController: UIViewController, CharacterListViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Characters"
-        navigationController?.navigationBar.prefersLargeTitles = true
         configureHierarchy()
         configureDataSource()
         configureBottomActivityIndicator()
         presenter.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     private func configureBottomActivityIndicator() {
@@ -153,7 +157,7 @@ extension CharacterListViewController: UICollectionViewDelegate {
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
-        navigationController?.navigationBar.prefersLargeTitles = false
+       // navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.pushViewController(host, animated: true)
     }
 
