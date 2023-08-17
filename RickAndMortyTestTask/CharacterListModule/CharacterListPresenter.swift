@@ -44,7 +44,6 @@ final class CharacterListPresenter: CharacterListPresenterProtocol {
     func loadMoreCharacters() async {
         Task {
             view?.startAnimateBottomSpinner()
-            sleep(2)
             let newCharacters = await rickNMortyLoader.fetchCharacters()
             rickNMortyCharacters.append(contentsOf: newCharacters)
             view?.updateDatasource(with: rickNMortyCharacters)

@@ -9,51 +9,31 @@ import SwiftUI
 
 struct DetailsView: View {
 
-    private let character: Character
-    @State private var episodes = [EpisodeResponse]()
-
-    let imageLoader: ImageLoaderProtocol
-    let rickNMortyLoader: IRickNMortyLoader
+    @StateObject private var viewModel: DetailsViewModel
 
     init(character: Character) {
-        self.character = character
-
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-
-        let networkManager = NetworkManager(decoder: jsonDecoder)
-
-        self.imageLoader = ImageLoader(networkManager: networkManager)
-        self.rickNMortyLoader = RickNMortyLoader(networkManager: networkManager)
+        _viewModel = StateObject(wrappedValue: DetailsViewModel(character: character))
     }
-
-    @State private var characterImage: Image?
 
     var body: some View {
         ScrollView {
             VStack {
                 VStack(alignment: .center) {
-                    characterImage?
+                    viewModel.characterImage?
                         .resizable()
                         .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .cornerRadius(16)
                         .frame(width: 150, height: 150)
                         .padding(.bottom)
-                    Text(character.name)
+                    Text(viewModel.character.name)
                         .font(.headline)
                         .foregroundColor(.white)
-                    switch character.status {
-                    case .alive: Text("Alive")
-                            .foregroundColor(.green)
-                    case .dead: Text("Dead")
-                            .foregroundColor(.red)
-                    case .unknown: Text("Unknown")
-                            .foregroundColor(.gray)
-                    }
+                    Text(viewModel.characterStatusText)
+                        .foregroundColor(viewModel.characterStatusColor)
                 }
 
                 Section {
-                    InfoView(character: character)
+                    InfoView(character: viewModel.character)
                 } header: {
                     HStack {
                         Text("Info")
@@ -64,7 +44,7 @@ struct DetailsView: View {
                 }
 
                 Section {
-                    OriginView(character: character)
+                    OriginView(character: viewModel.character)
                 } header: {
                     HStack {
                         Text("Origin")
@@ -75,7 +55,7 @@ struct DetailsView: View {
                 }
 
                 Section {
-                    ForEach(episodes, id: \.id) { episode in
+                    ForEach(viewModel.episodes, id: \.self) { episode in
                         EpisodesView(episodeResponse: episode)
                     }
                 } header: {
@@ -89,19 +69,6 @@ struct DetailsView: View {
             }
         }
         .frame(maxHeight: .infinity)
-
-        .task {
-            if let image = await imageLoader.fetchImage(for: character) {
-                characterImage = Image(uiImage: image)
-            }
-
-            do {
-                episodes = try await rickNMortyLoader.fetchEpisodesForCharacter(character)
-            } catch {
-                print(error)
-            }
-
-        }
         .padding(.horizontal)
     }
 }

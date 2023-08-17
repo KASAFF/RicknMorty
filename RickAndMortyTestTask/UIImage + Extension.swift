@@ -6,7 +6,12 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension UIImage {
     static var placeholder: UIImage? { return UIImage(named: "placeholderImage") }
+}
+
+enum CustomImage {
+    static var placeholder: Image? { return Image("placeholderImage") }
 }
