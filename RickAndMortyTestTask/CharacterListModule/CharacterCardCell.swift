@@ -13,7 +13,7 @@ class CharacterCardCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "rick")
+        imageView.image = UIImage(named: "placeholderImage")
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         return imageView
@@ -23,7 +23,6 @@ class CharacterCardCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .title3)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Rick Sanchez"
         label.textAlignment = .center
         label.textColor = .white
         return label

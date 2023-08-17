@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let networkManager = NetworkManager()
         let rickNmortyLoader = RickNMortyLoader(networkManager: networkManager)
         let imageLoader = ImageLoader(networkManager: networkManager)
-        return MainViewController(rickNMortyLoader: rickNmortyLoader, imageLoader: imageLoader)
+        return CharacterListViewController(rickNMortyLoader: rickNmortyLoader, imageLoader: imageLoader)
     }
 }
 

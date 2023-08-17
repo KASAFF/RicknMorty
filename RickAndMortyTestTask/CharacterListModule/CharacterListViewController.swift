@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class MainViewController: UIViewController {
+class CharacterListViewController: UIViewController {
 
     enum Section {
         case main
@@ -46,13 +46,11 @@ class MainViewController: UIViewController {
         configureHierarchy()
         configureDataSource()
 
-        Task {
-            rickNMortyCharacters = await rickNMortyLoader.fetchCharacters()
-        }
+        Task { rickNMortyCharacters = await rickNMortyLoader.fetchCharacters() }
     }
 }
 
-extension MainViewController {
+extension CharacterListViewController {
     func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                               heightDimension: .fractionalHeight(1))
@@ -75,7 +73,7 @@ extension MainViewController {
     }
 }
 
-extension MainViewController {
+extension CharacterListViewController {
     func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         guard let collectionView else { return }
@@ -110,7 +108,7 @@ extension MainViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate {
+extension CharacterListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let character = dataSource?.itemIdentifier(for: indexPath) else { return }
 
@@ -122,6 +120,20 @@ extension MainViewController: UICollectionViewDelegate {
 
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.pushViewController(host, animated: true)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == rickNMortyCharacters.count - 1 {
+            loadMoreCharacters()
+        }
+    }
+
+    func loadMoreCharacters() {
+        Task {
+            let newCharacters = await rickNMortyLoader.fetchCharacters()
+            rickNMortyCharacters.append(contentsOf: newCharacters)
+            updateDatasource()
+        }
     }
 }
 

@@ -13,6 +13,7 @@ extension UIColor {
     static var customBackgroundColor: UIColor? { return UIColor(named: "blackBackground") }
 }
 
-extension Color {
+enum CustomColor {
     static var customBackgroundColor: Color? { return Color("blackBackground") }
+    static var cellBackgroundColor: Color? { return Color("blendBlack") }
 }

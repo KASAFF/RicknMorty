@@ -9,90 +9,100 @@ import SwiftUI
 
 struct DetailsView: View {
 
-    let character: Character
+    private let character: Character
+    @State private var episodes = [EpisodeResponse]()
+
+    let imageLoader: ImageLoaderProtocol
+    let rickNMortyLoader: IRickNMortyLoader
+
+    init(character: Character) {
+        self.character = character
+
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        let networkManager = NetworkManager(decoder: jsonDecoder)
+
+        self.imageLoader = ImageLoader(networkManager: networkManager)
+        self.rickNMortyLoader = RickNMortyLoader(networkManager: networkManager)
+    }
+
+    @State private var characterImage: Image?
 
     var body: some View {
-        VStack {
-            VStack(alignment: .center) {
-                Image(uiImage: UIImage(named: "rick")!)
-                Text(character.name)
-                    .foregroundColor(.white)
-                switch character.status {
-                case .alive: Text("Alive")
-                        .foregroundColor(.green)
-                case .dead: Text("Dead")
-                        .foregroundColor(.red)
-                case .unknown: Text("Unknown")
-                        .foregroundColor(.gray)
-                }
-            }
-            Section {
-                VStack {
-                    HStack {
-                        Text("Species:")
-                        Spacer()
-                        Text(character.species)
-                    }
-
-                    HStack {
-                        Text("Type:")
-                        Spacer()
-                        Text(!character.type.isEmpty ? character.type : "Unknown")
-                    }
-                    .padding(.vertical)
-
-                    HStack {
-                        Text("Gender: ")
-                        Spacer()
-                        Text(character.gender)
-                    }
-                }
-                .padding()
-                .foregroundColor(.white)
-                .background(Color(red: 0.15, green: 0.16, blue: 0.22))
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-            } header: {
-                HStack {
-                    Text("Info")
+        ScrollView {
+            VStack {
+                VStack(alignment: .center) {
+                    characterImage?
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .frame(width: 150, height: 150)
+                        .padding(.bottom)
+                    Text(character.name)
                         .font(.headline)
                         .foregroundColor(.white)
-                    Spacer()
-                }
-            }
-
-            Section {
-                HStack {
-                    ZStack {
-                        Rectangle()
-                            .frame(width: 64, height: 64)
-                            .background(Color(red: 0.1, green: 0.11, blue: 0.16))
-                            .cornerRadius(10)
-
-                        Image("planet")
-                    }
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(character.origin.name)
-                        Text("Planet")
+                    switch character.status {
+                    case .alive: Text("Alive")
                             .foregroundColor(.green)
+                    case .dead: Text("Dead")
+                            .foregroundColor(.red)
+                    case .unknown: Text("Unknown")
+                            .foregroundColor(.gray)
                     }
-                    .foregroundColor(.white)
-
-                    Spacer()
                 }
-                .padding()
-                .background(Color(red: 0.15, green: 0.16, blue: 0.22))
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-            } header: {
-                HStack {
-                    Text("Origin")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    Spacer()
+
+                Section {
+                    InfoView(character: character)
+                } header: {
+                    HStack {
+                        Text("Info")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                }
+
+                Section {
+                    OriginView(character: character)
+                } header: {
+                    HStack {
+                        Text("Origin")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                }
+
+                Section {
+                    ForEach(episodes, id: \.id) { episode in
+                        EpisodesView(episodeResponse: episode)
+                    }
+                } header: {
+                    HStack {
+                        Text("Episodes")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
                 }
             }
-            
         }
-        .padding()
+        .frame(maxHeight: .infinity)
+
+        .task {
+            if let image = await imageLoader.fetchImage(for: character) {
+                characterImage = Image(uiImage: image)
+            }
+
+            do {
+                episodes = try await rickNMortyLoader.fetchEpisodesForCharacter(character)
+            } catch {
+                print(error)
+            }
+
+        }
+        .padding(.horizontal)
     }
 }
 
