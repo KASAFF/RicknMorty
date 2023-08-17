@@ -8,28 +8,34 @@
 import UIKit
 import SwiftUI
 
-class CharacterListViewController: UIViewController {
+protocol CharacterListViewProtocol: AnyObject {
+    func updateDatasource(with characters: [Character])
+    func startAnimateBottomSpinner()
+    func stopAnimateBottomSpinner()
+}
 
-    enum Section {
+class CharacterListViewController: UIViewController, CharacterListViewProtocol {
+
+    private enum Section {
         case main
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<Section, Character>?
-    var collectionView: UICollectionView?
+    private var loadingInProgress = false
 
-    var rickNMortyCharacters = [Character]() {
-        didSet {
-            updateDatasource()
-        }
-    }
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
 
-    let rickNMortyLoader: IRickNMortyLoader
-    let imageLoader: ImageLoaderProtocol
+    private let presenter: CharacterListPresenterProtocol
 
-    init(rickNMortyLoader: IRickNMortyLoader,
-         imageLoader: ImageLoaderProtocol) {
-        self.rickNMortyLoader = rickNMortyLoader
-        self.imageLoader = imageLoader
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Character>?
+    private var collectionView: UICollectionView?
+
+    init(presenter: CharacterListPresenterProtocol) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -45,8 +51,18 @@ class CharacterListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         configureHierarchy()
         configureDataSource()
+        configureBottomActivityIndicator()
+        presenter.viewDidLoad()
+    }
 
-        Task { rickNMortyCharacters = await rickNMortyLoader.fetchCharacters() }
+    private func configureBottomActivityIndicator() {
+        let layoutGuide = view.safeAreaLayoutGuide
+        view.addSubview(loadingIndicator)
+        NSLayoutConstraint.activate([
+            layoutGuide.centerXAnchor.constraint(equalTo: loadingIndicator.centerXAnchor),
+            layoutGuide.bottomAnchor.constraint(equalTo: loadingIndicator.bottomAnchor, constant: 10)
+        ])
+        collectionView?.contentInset.bottom = 50
     }
 }
 
@@ -90,21 +106,40 @@ extension CharacterListViewController {
 
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CharacterCardCell.reuseIdentifier,
-                for: indexPath) as? CharacterCardCell else { fatalError("Cannot create new cell") }
+                for: indexPath) as? CharacterCardCell else { return UICollectionViewCell() }
 
             cell.configure(with: character)
-            Task { cell.personImageView.image = await self.imageLoader.fetchImage(for: character) }
+
+            Task { [weak self] in
+                if let personImageData = await self?.presenter.loadCharacterImage(for: character) {
+                    cell.personImageView.image = UIImage(data: personImageData)
+                }
+            }
 
             return cell
         }
-        updateDatasource()
     }
 
-    private func updateDatasource() {
+    func updateDatasource(with characters: [Character]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Character>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(rickNMortyCharacters)
+        snapshot.appendItems(characters)
         dataSource?.apply(snapshot, animatingDifferences: true)
+    }
+
+
+    func startAnimateBottomSpinner() {
+        loadingInProgress = true
+        DispatchQueue.main.async {
+            self.loadingIndicator.startAnimating()
+        }
+    }
+
+    func stopAnimateBottomSpinner() {
+        loadingInProgress = false
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+        }
     }
 }
 
@@ -123,16 +158,10 @@ extension CharacterListViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == rickNMortyCharacters.count - 1 {
-            loadMoreCharacters()
-        }
-    }
-
-    func loadMoreCharacters() {
-        Task {
-            let newCharacters = await rickNMortyLoader.fetchCharacters()
-            rickNMortyCharacters.append(contentsOf: newCharacters)
-            updateDatasource()
+        if presenter.isShouldLoadMoreChars(for: indexPath) {
+            Task {
+                await presenter.loadMoreCharacters()
+            }
         }
     }
 }

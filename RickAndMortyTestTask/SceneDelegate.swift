@@ -20,7 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func createNavigationController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: build())
+
+        let characterListVC = CharacterListModuleBuilder().build()
+
+        let navigationController = UINavigationController(rootViewController: characterListVC)
 
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -49,11 +52,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
-    private func build() -> UIViewController {
-        let networkManager = NetworkManager()
-        let rickNmortyLoader = RickNMortyLoader(networkManager: networkManager)
-        let imageLoader = ImageLoader(networkManager: networkManager)
-        return CharacterListViewController(rickNMortyLoader: rickNmortyLoader, imageLoader: imageLoader)
-    }
+    
 }
 

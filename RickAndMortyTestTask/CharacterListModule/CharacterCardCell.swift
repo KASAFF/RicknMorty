@@ -19,7 +19,7 @@ class CharacterCardCell: UICollectionViewCell {
         return imageView
     }()
 
-    lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .title3)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +27,8 @@ class CharacterCardCell: UICollectionViewCell {
         label.textColor = .white
         return label
     }()
-    static let reuseIdentifier = "text-cell-reuse-identifier"
+
+    static let reuseIdentifier = "characterCardCellReuseID"
 
     override init(frame: CGRect) {
         super.init(frame: frame)

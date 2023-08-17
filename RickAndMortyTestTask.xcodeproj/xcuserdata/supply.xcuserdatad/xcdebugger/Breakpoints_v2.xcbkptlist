@@ -96,6 +96,38 @@
             endingLineNumber = "45"
             landmarkName = "fetchEpisodesForCharacter(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3CFF159F-B1CC-4825-AFC4-1101B9950008 - cf7c03b799aa9643"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMortyTestTask.RickNMortyLoader.fetchEpisodesForCharacter(RickAndMortyTestTask.Character) async throws -&gt; Swift.Array&lt;RickAndMortyTestTask.EpisodeResponse&gt;"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/Service/RickNMortyLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "3CFF159F-B1CC-4825-AFC4-1101B9950008 - c74879c8e9c25941"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for RickAndMortyTestTask.RickNMortyLoader.fetchEpisodesForCharacter(RickAndMortyTestTask.Character) async throws -&gt; Swift.Array&lt;RickAndMortyTestTask.EpisodeResponse&gt;"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/Service/RickNMortyLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
