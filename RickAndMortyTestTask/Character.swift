@@ -17,10 +17,30 @@ struct Origin: Codable {
     let url: String
 }
 
+enum Status: Codable {
+    case alive
+    case dead
+    case unknown
+
+    init(from decoder: Decoder) throws {
+            let stringValue = try decoder.singleValueContainer().decode(String.self)
+            switch stringValue {
+            case "Alive":
+                self = .alive
+            case "Dead":
+                self = .dead
+            case "Unknown":
+                self = .unknown
+            default:
+                self = .unknown
+            }
+        }
+}
+
 struct Character: Codable, Hashable {
     let id: Int
     let name: String
-    let status: String
+    let status: Status
     let species: String
     let type: String
     let gender: String

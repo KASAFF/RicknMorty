@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainViewController: UIViewController {
 
@@ -35,6 +36,8 @@ class MainViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +81,7 @@ extension MainViewController {
         guard let collectionView else { return }
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .customBackgroundColor
+        collectionView.delegate = self
         collectionView.register(CharacterCardCell.self, forCellWithReuseIdentifier: CharacterCardCell.reuseIdentifier)
         view.addSubview(collectionView)
     }
@@ -102,7 +106,22 @@ extension MainViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Character>()
         snapshot.appendSections([.main])
         snapshot.appendItems(rickNMortyCharacters)
-        dataSource?.apply(snapshot, animatingDifferences: false)
+        dataSource?.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let character = dataSource?.itemIdentifier(for: indexPath) else { return }
+
+        let detailsCharactherView = DetailsView(character: character)
+        let host = UIHostingController(rootView: detailsCharactherView)
+        host.view.backgroundColor = .customBackgroundColor
+
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.pushViewController(host, animated: true)
     }
 }
 

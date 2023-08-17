@@ -8,5 +8,5 @@
 import UIKit
 
 extension UIImage {
-    static var placeholder: UIImage? { return UIImage(named: "placeholder") }
+    static var placeholder: UIImage? { return UIImage(named: "placeholderImage") }
 }

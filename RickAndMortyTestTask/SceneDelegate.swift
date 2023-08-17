@@ -41,6 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 
+        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.standardAppearance = navigationBarAppearance
+        navigationController.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+
         return navigationController
     }
 
