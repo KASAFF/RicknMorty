@@ -32,16 +32,20 @@ class CharacterCardCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        setupUI()
     }
     required init?(coder: NSCoder) {
         fatalError("not implemnted")
     }
 
+    func configure(with character: Character) {
+        label.text = character.name
+    }
+
 }
 
-extension CharacterCardCell {
-    func configure() {
+private extension CharacterCardCell {
+    func setupUI() {
         contentView.backgroundColor = .cellBackgroundColor
         contentView.addSubview(personImageView)
         contentView.addSubview(label)

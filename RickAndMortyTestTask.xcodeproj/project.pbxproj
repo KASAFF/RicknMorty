@@ -14,6 +14,12 @@
 		ABCAE4032A8E26B600BEE310 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABCAE4012A8E26B600BEE310 /* LaunchScreen.storyboard */; };
 		ABCAE40B2A8E27FC00BEE310 /* CharacterCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE40A2A8E27FC00BEE310 /* CharacterCardCell.swift */; };
 		ABCAE40D2A8E2BDF00BEE310 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE40C2A8E2BDF00BEE310 /* UIColor + Extension.swift */; };
+		ABCAE40F2A8E32D500BEE310 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE40E2A8E32D500BEE310 /* NetworkManager.swift */; };
+		ABCAE4112A8E331700BEE310 /* RickMortyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE4102A8E331700BEE310 /* RickMortyError.swift */; };
+		ABCAE4132A8E33F400BEE310 /* RickNMortyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE4122A8E33F400BEE310 /* RickNMortyLoader.swift */; };
+		ABCAE4152A8E347400BEE310 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE4142A8E347400BEE310 /* Character.swift */; };
+		ABCAE4192A8E3BCB00BEE310 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE4182A8E3BCA00BEE310 /* ImageLoader.swift */; };
+		ABCAE41B2A8E415F00BEE310 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE41A2A8E415F00BEE310 /* UIImage + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,12 @@
 		ABCAE4042A8E26B600BEE310 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABCAE40A2A8E27FC00BEE310 /* CharacterCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCardCell.swift; sourceTree = "<group>"; };
 		ABCAE40C2A8E2BDF00BEE310 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		ABCAE40E2A8E32D500BEE310 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		ABCAE4102A8E331700BEE310 /* RickMortyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortyError.swift; sourceTree = "<group>"; };
+		ABCAE4122A8E33F400BEE310 /* RickNMortyLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickNMortyLoader.swift; sourceTree = "<group>"; };
+		ABCAE4142A8E347400BEE310 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		ABCAE4182A8E3BCA00BEE310 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		ABCAE41A2A8E415F00BEE310 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +73,35 @@
 				ABCAE3F62A8E26B500BEE310 /* AppDelegate.swift */,
 				ABCAE3F82A8E26B500BEE310 /* SceneDelegate.swift */,
 				ABCAE3FA2A8E26B500BEE310 /* MainViewController.swift */,
+				ABCAE4162A8E348300BEE310 /* Core */,
 				ABCAE40A2A8E27FC00BEE310 /* CharacterCardCell.swift */,
+				ABCAE4172A8E348C00BEE310 /* Service */,
+				ABCAE4142A8E347400BEE310 /* Character.swift */,
 				ABCAE40C2A8E2BDF00BEE310 /* UIColor + Extension.swift */,
+				ABCAE41A2A8E415F00BEE310 /* UIImage + Extension.swift */,
 				ABCAE3FF2A8E26B600BEE310 /* Assets.xcassets */,
 				ABCAE4012A8E26B600BEE310 /* LaunchScreen.storyboard */,
 				ABCAE4042A8E26B600BEE310 /* Info.plist */,
 			);
 			path = RickAndMortyTestTask;
+			sourceTree = "<group>";
+		};
+		ABCAE4162A8E348300BEE310 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ABCAE40E2A8E32D500BEE310 /* NetworkManager.swift */,
+				ABCAE4102A8E331700BEE310 /* RickMortyError.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		ABCAE4172A8E348C00BEE310 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				ABCAE4122A8E33F400BEE310 /* RickNMortyLoader.swift */,
+				ABCAE4182A8E3BCA00BEE310 /* ImageLoader.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +174,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCAE4152A8E347400BEE310 /* Character.swift in Sources */,
+				ABCAE40F2A8E32D500BEE310 /* NetworkManager.swift in Sources */,
+				ABCAE4192A8E3BCB00BEE310 /* ImageLoader.swift in Sources */,
 				ABCAE3FB2A8E26B500BEE310 /* MainViewController.swift in Sources */,
+				ABCAE4132A8E33F400BEE310 /* RickNMortyLoader.swift in Sources */,
 				ABCAE40B2A8E27FC00BEE310 /* CharacterCardCell.swift in Sources */,
 				ABCAE3F72A8E26B500BEE310 /* AppDelegate.swift in Sources */,
+				ABCAE4112A8E331700BEE310 /* RickMortyError.swift in Sources */,
+				ABCAE41B2A8E415F00BEE310 /* UIImage + Extension.swift in Sources */,
 				ABCAE3F92A8E26B500BEE310 /* SceneDelegate.swift in Sources */,
 				ABCAE40D2A8E2BDF00BEE310 /* UIColor + Extension.swift in Sources */,
 			);
