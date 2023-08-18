@@ -52,5 +52,163 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED6F580F-541D-4D9D-B64F-4D5F5C4BF5DC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "loadCharacterData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ED6F580F-541D-4D9D-B64F-4D5F5C4BF5DC - d5f90c50716802f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in RickAndMortyTestTask.DetailsViewModel.loadCharacterData() -&gt; ()"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  uuid = "ED6F580F-541D-4D9D-B64F-4D5F5C4BF5DC - a5f20c713a4f55f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async -&gt; () in RickAndMortyTestTask.DetailsViewModel.loadCharacterData() -&gt; ()"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "ED6F580F-541D-4D9D-B64F-4D5F5C4BF5DC - 3d2b5fa57800c6cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in RickAndMortyTestTask.DetailsViewModel.loadCharacterData() -&gt; ()"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "ED6F580F-541D-4D9D-B64F-4D5F5C4BF5DC - 6ef2405ce7b524ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in RickAndMortyTestTask.DetailsViewModel.loadCharacterData() -&gt; ()"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9AEB7703-1676-4A41-8A84-53789CAF5379"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "loadCharacterData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9AEB7703-1676-4A41-8A84-53789CAF5379 - 3d2b5fa57800c6ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in RickAndMortyTestTask.DetailsViewModel.loadCharacterData() -&gt; ()"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "9AEB7703-1676-4A41-8A84-53789CAF5379 - 6ef2405ce7b524ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in RickAndMortyTestTask.DetailsViewModel.loadCharacterData() -&gt; ()"
+                  moduleName = "RickAndMortyTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/supply/Programming/RickAndMortyTestTask/RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3263F924-EA4B-46D5-8CDB-0283EEA83242"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "loadCharacterData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E131AD68-8437-4F47-8C52-220690EA653E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyTestTask/PresentationLayer/DetailViewModule(SUI)/DetailsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "loadCharacterData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

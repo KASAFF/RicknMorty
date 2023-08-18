@@ -61,12 +61,16 @@ struct DetailsView: View {
                 .padding(.bottom)
             }
             .padding(.horizontal)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Spacer()
-                }
-            }
-            .frame(maxHeight: .infinity)
+        }
+        .alert(isPresented: $viewModel.showingError) {
+            Alert(
+                title: Text(viewModel.errorTitle),
+                message: Text(viewModel.errorText),
+                primaryButton: .default(Text("OK")),
+                secondaryButton: .default(Text("Try again"),
+                action: viewModel.onRetryButton)
+            )
+
         }
     }
 }
