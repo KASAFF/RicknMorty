@@ -16,67 +16,77 @@ struct DetailsView: View {
     }
 
     var body: some View {
-        ScrollView {
-            Group {
-                VStack(alignment: .center) {
-                    viewModel.characterImage?
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(16)
-                        .frame(width: 150, height: 150)
-                        .padding(.bottom, 12)
-                    Text(viewModel.character.name)
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.bottom, 2)
-                    Text(viewModel.characterStatusText)
-                        .foregroundColor(viewModel.characterStatusColor)
-                }
-                .padding(.bottom)
-
-                Section {
-                    InfoView(character: viewModel.character)
-                } header: {
-                    SectionHeaderView(text: "Info")
-                }
-                .padding(.bottom)
-
-                Section {
-                    OriginView(character: viewModel.character)
-                } header: {
-                    SectionHeaderView(text: "Origin")
-                }
-                .padding(.bottom)
-
-
-                Section {
-                    LazyVStack {
-                        ForEach(viewModel.episodes, id: \.self) { episode in
-                            EpisodesView(episodeResponse: episode)
-                        }
+        ZStack {
+            ScrollView {
+                Group {
+                    VStack(alignment: .center) {
+                        viewModel.characterImage?
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(16)
+                            .frame(width: 150, height: 150)
+                            .padding(.bottom, 12)
+                        Text(viewModel.character.name)
+                            .font(.system(size: 22, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.bottom, 2)
+                        Text(viewModel.characterStatusText)
+                            .foregroundColor(viewModel.characterStatusColor)
                     }
-                } header: {
-                    SectionHeaderView(text: "Episodes")
+                    .padding(.bottom)
+                    
+                    Section {
+                        InfoView(character: viewModel.character)
+                    } header: {
+                        SectionHeaderView(text: "Info")
+                    }
+                    .padding(.bottom)
+                    
+                    Section {
+                        OriginView(character: viewModel.character)
+                    } header: {
+                        SectionHeaderView(text: "Origin")
+                    }
+                    .padding(.bottom)
+                    
+                    
+                    Section {
+                        LazyVStack {
+                            ForEach(viewModel.episodes, id: \.self) { episode in
+                                EpisodesView(episodeResponse: episode)
+                            }
+                        }
+                    } header: {
+                        SectionHeaderView(text: "Episodes")
+                    }
+                    .padding(.bottom)
                 }
-                .padding(.bottom)
+                .padding(.horizontal)
+                
             }
-            .padding(.horizontal)
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                CustomNavigationBackButton()
-            }
-        }
-        .alert(isPresented: $viewModel.showingError) {
-            Alert(
-                title: Text(viewModel.errorTitle),
-                message: Text(viewModel.errorText),
-                primaryButton: .default(Text("OK")),
-                secondaryButton: .default(Text("Try again"),
-                action: viewModel.onRetryButton)
-            )
 
+
+
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    CustomNavigationBackButton()
+                }
+            }
+            .alert(isPresented: $viewModel.showingError) {
+                Alert(
+                    title: Text(viewModel.errorTitle),
+                    message: Text(viewModel.errorText),
+                    primaryButton: .default(Text("OK")),
+                    secondaryButton: .default(Text("Try again"),
+                                              action: viewModel.onRetryButton)
+                )
+                
+            }
+
+            if viewModel.isLoading {
+                LoadingView()
+            }
         }
     }
 }

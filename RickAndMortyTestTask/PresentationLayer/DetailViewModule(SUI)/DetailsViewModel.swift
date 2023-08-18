@@ -19,6 +19,9 @@ final class DetailsViewModel: ObservableObject {
     @Published var errorTitle: String = ""
     @Published var errorText: String = ""
 
+
+    @Published var isLoading = true
+
     let imageLoader: ImageLoaderProtocol
     let rickNMortyLoader: IRickNMortyLoader
     let character: Character
@@ -40,6 +43,7 @@ final class DetailsViewModel: ObservableObject {
     }
 
     private func loadCharacterData() {
+        isLoading = true
         Task {
             if let image = await imageLoader.fetchImage(for: character) {
                 characterImage = Image(uiImage: image)
@@ -47,6 +51,7 @@ final class DetailsViewModel: ObservableObject {
 
             do {
                 episodes = try await rickNMortyLoader.fetchEpisodesForCharacter(character)
+                isLoading = false
             } catch {
                 if let rickError = error as? RickMortyError {
                     errorText = rickError.errorDescription ?? "Please try again later"
