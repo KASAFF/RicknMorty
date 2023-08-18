@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         ZStack {
-            Color(.grayText)
+            Color(.gray)
                 .ignoresSafeArea()
                 .clipShape(RoundedRectangle(cornerRadius: 6))
                 .opacity(0.6)
