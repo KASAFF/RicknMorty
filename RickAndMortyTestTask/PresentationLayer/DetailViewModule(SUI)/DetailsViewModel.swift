@@ -5,18 +5,8 @@
 //  Created by Aleksey Kosov on 18.08.2023.
 //
 
-import Foundation
-
-import Foundation
 import SwiftUI
 
-@MainActor
-protocol DetailsViewModelProtocol: ObservableObject, AnyObject {
-    var episodes: [EpisodeResponse] { get }
-    var characterImage: Image? { get }
-    var characterStatusText: String { get }
-    var characterStatusColor: Color { get }
-}
 
 @MainActor
 final class DetailsViewModel: ObservableObject {
@@ -25,9 +15,15 @@ final class DetailsViewModel: ObservableObject {
     @Published private (set) var characterStatusText = ""
     @Published private (set) var characterStatusColor: Color? = .gray
 
+    @Published var showingError = false
+    @Published var errorTitle: String = ""
+    @Published var errorText: String = ""
+
     let imageLoader: ImageLoaderProtocol
     let rickNMortyLoader: IRickNMortyLoader
     let character: Character
+
+    var onRetryButton: (() -> Void)? = nil
 
     init(character: Character) {
         self.character = character
@@ -52,7 +48,14 @@ final class DetailsViewModel: ObservableObject {
             do {
                 episodes = try await rickNMortyLoader.fetchEpisodesForCharacter(character)
             } catch {
-                print(error)
+                if let rickError = error as? RickMortyError {
+                    errorText = rickError.errorDescription ?? "Please try again later"
+                    errorTitle = "Something went wrong"
+                    onRetryButton = { [weak self] in
+                        self?.loadCharacterData()
+                    }
+                    showingError = true
+                }
             }
 
             switch character.status {
