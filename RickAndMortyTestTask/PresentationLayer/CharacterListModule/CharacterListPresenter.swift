@@ -31,13 +31,22 @@ final class CharacterListPresenter: CharacterListPresenterProtocol {
     }
     
     func viewDidLoad() async {
+        DispatchQueue.main.async {
+            self.view?.animateInitialLoading()
+        }
         do {
             view?.startAnimateBottomSpinner()
             rickNMortyCharacters = try await rickNMortyLoader.fetchCharacters()
             view?.updateDatasource(with: rickNMortyCharacters)
-            view?.stopAnimateBottomSpinner()
+            DispatchQueue.main.async {
+                self.view?.stopAnimateBottomSpinner()
+                self.view?.intialLoadingComplete()
+            }
         } catch {
-            view?.stopAnimateBottomSpinner()
+            DispatchQueue.main.async {
+                self.view?.stopAnimateBottomSpinner()
+                self.view?.intialLoadingComplete()
+            }
             self.alertPresenter.presentErrorWithTryAgainButton(title: "Something went wrong", error: error) { [weak self] in
                 await self?.viewDidLoad()
             }

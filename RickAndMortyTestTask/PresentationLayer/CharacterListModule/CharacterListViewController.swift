@@ -12,6 +12,9 @@ protocol CharacterListViewProtocol: AnyObject {
     func updateDatasource(with characters: [Character])
     func startAnimateBottomSpinner()
     func stopAnimateBottomSpinner()
+
+    func animateInitialLoading()
+    func intialLoadingComplete()
 }
 
 class CharacterListViewController: UIViewController, CharacterListViewProtocol {
@@ -22,8 +25,24 @@ class CharacterListViewController: UIViewController, CharacterListViewProtocol {
 
     private var loadingInProgress = false
 
-    private lazy var loadingIndicator: UIActivityIndicatorView = {
+    private lazy var padginationLoadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+
+    private lazy var loadingView = {
+        let loadingView = UIView()
+        loadingView.backgroundColor = .gray.withAlphaComponent(0.95)
+        loadingView.layer.cornerRadius = 6
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        return loadingView
+    }()
+
+    private lazy var characterLoadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
         return indicator
@@ -51,6 +70,8 @@ class CharacterListViewController: UIViewController, CharacterListViewProtocol {
         configureHierarchy()
         configureDataSource()
         configureBottomActivityIndicator()
+
+        configureInitialActivityIndicator()
         Task { await presenter.viewDidLoad() }
     }
 
@@ -59,12 +80,42 @@ class CharacterListViewController: UIViewController, CharacterListViewProtocol {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
+    private func configureInitialActivityIndicator() {
+        view.addSubview(loadingView)
+
+        NSLayoutConstraint.activate([
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.heightAnchor.constraint(equalToConstant: 110),
+            loadingView.widthAnchor.constraint(equalToConstant: 110)
+        ])
+
+        loadingView.addSubview(characterLoadingIndicator)
+
+        NSLayoutConstraint.activate([
+            characterLoadingIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            characterLoadingIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor),
+            characterLoadingIndicator.heightAnchor.constraint(equalToConstant: 100),
+            characterLoadingIndicator.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+
+    func animateInitialLoading() {
+        loadingView.isHidden = false
+        characterLoadingIndicator.startAnimating()
+    }
+
+    func intialLoadingComplete() {
+        loadingView.isHidden = true
+        characterLoadingIndicator.stopAnimating()
+    }
+
     private func configureBottomActivityIndicator() {
         let layoutGuide = view.safeAreaLayoutGuide
-        view.addSubview(loadingIndicator)
+        view.addSubview(padginationLoadingIndicator)
         NSLayoutConstraint.activate([
-            layoutGuide.centerXAnchor.constraint(equalTo: loadingIndicator.centerXAnchor),
-            layoutGuide.bottomAnchor.constraint(equalTo: loadingIndicator.bottomAnchor, constant: 10)
+            layoutGuide.centerXAnchor.constraint(equalTo: padginationLoadingIndicator.centerXAnchor),
+            layoutGuide.bottomAnchor.constraint(equalTo: padginationLoadingIndicator.bottomAnchor, constant: 10)
         ])
         collectionView?.contentInset.bottom = 50
     }
@@ -135,14 +186,14 @@ extension CharacterListViewController {
     func startAnimateBottomSpinner() {
         loadingInProgress = true
         DispatchQueue.main.async {
-            self.loadingIndicator.startAnimating()
+            self.padginationLoadingIndicator.startAnimating()
         }
     }
 
     func stopAnimateBottomSpinner() {
         loadingInProgress = false
         DispatchQueue.main.async {
-            self.loadingIndicator.stopAnimating()
+            self.padginationLoadingIndicator.stopAnimating()
         }
     }
 }
