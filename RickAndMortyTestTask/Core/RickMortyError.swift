@@ -9,6 +9,7 @@
 import Foundation
 
 enum RickMortyError: Error {
+    case fetchingEpisodesError
     case loadingImageListError
     case invalidURL
     case invalidResponse
@@ -29,6 +30,8 @@ extension RickMortyError: LocalizedError {
             return NSLocalizedString("Unable to decode the received data.", comment: "Unable to decode")
         case .loadingImageListError:
             return NSLocalizedString("Error when loading list with images. Try again later", comment: "Image list loading error")
+        case .fetchingEpisodesError:
+            return NSLocalizedString("Error when trying to load episodes. Try agan later", comment: "Episodes fetch error")
         }
     }
 }

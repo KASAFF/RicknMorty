@@ -16,14 +16,15 @@ struct EpisodesView: View {
             VStack(alignment: .leading) {
                 Text(episodeResponse.name)
                     .foregroundColor(.white)
-                    .font(.headline)
+                    .font(.system(size: 19, weight: .semibold))
                 HStack {
                     Text(episodeResponse.formatEpisodeSeason)
-                        .foregroundColor(.green)
-                        .font(.subheadline)
+                        .foregroundColor(CustomColor.textGreen)
+                        .font(.system(size: 14, weight: .light))
                     Spacer()
                     Text(episodeResponse.airDate)
-                        .foregroundColor(.gray)
+                        .font(.system(size: 13, weight: .light))
+                        .foregroundColor(CustomColor.textGray)
                 }
                 .padding(.top, 8)
             }

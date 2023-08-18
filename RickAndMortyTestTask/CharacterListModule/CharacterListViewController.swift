@@ -51,7 +51,7 @@ class CharacterListViewController: UIViewController, CharacterListViewProtocol {
         configureHierarchy()
         configureDataSource()
         configureBottomActivityIndicator()
-        presenter.viewDidLoad()
+        Task { await presenter.viewDidLoad() }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -155,9 +155,8 @@ extension CharacterListViewController: UICollectionViewDelegate {
         let host = UIHostingController(rootView: detailsCharactherView)
         host.view.backgroundColor = .customBackgroundColor
 
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
 
-       // navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.pushViewController(host, animated: true)
     }
 

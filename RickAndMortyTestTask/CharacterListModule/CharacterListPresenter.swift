@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CharacterListPresenterProtocol: AnyObject {
-    func viewDidLoad()
+    func viewDidLoad() async
     func loadCharacterImage(for character: Character) async -> Data?
     func loadMoreCharacters() async
     func isShouldLoadMoreChars(for indexPath: IndexPath) -> Bool
@@ -18,21 +18,29 @@ final class CharacterListPresenter: CharacterListPresenterProtocol {
     var view: CharacterListViewProtocol?
     private let rickNMortyLoader: IRickNMortyLoader
     private let imageLoader: ImageLoaderProtocol
+    private let alertPresenter: AlertPresenterProtocol
 
     private var rickNMortyCharacters = [Character]()
 
     init(rickNMortyLoader: IRickNMortyLoader,
-         imageLoader: ImageLoaderProtocol) {
+         imageLoader: ImageLoaderProtocol,
+         alertPresenter: AlertPresenterProtocol) {
         self.rickNMortyLoader = rickNMortyLoader
         self.imageLoader = imageLoader
+        self.alertPresenter = alertPresenter
     }
     
-    func viewDidLoad() {
-        Task {
+    func viewDidLoad() async {
+        do {
             view?.startAnimateBottomSpinner()
-            rickNMortyCharacters = await rickNMortyLoader.fetchCharacters()
+            rickNMortyCharacters = try await rickNMortyLoader.fetchCharacters()
             view?.updateDatasource(with: rickNMortyCharacters)
             view?.stopAnimateBottomSpinner()
+        } catch {
+            view?.stopAnimateBottomSpinner()
+            self.alertPresenter.presentErrorWithTryAgainButton(title: "Something went wrong", error: error) { [weak self] in
+                await self?.viewDidLoad()
+            }
         }
     }
 
@@ -42,12 +50,17 @@ final class CharacterListPresenter: CharacterListPresenterProtocol {
     }
 
     func loadMoreCharacters() async {
-        Task {
-            view?.startAnimateBottomSpinner()
-            let newCharacters = await rickNMortyLoader.fetchCharacters()
-            rickNMortyCharacters.append(contentsOf: newCharacters)
-            view?.updateDatasource(with: rickNMortyCharacters)
+        do {
+            self.view?.startAnimateBottomSpinner()
+            let newCharacters = try await self.rickNMortyLoader.fetchCharacters()
+            self.rickNMortyCharacters.append(contentsOf: newCharacters)
+            self.view?.updateDatasource(with: self.rickNMortyCharacters)
+            self.view?.stopAnimateBottomSpinner()
+        } catch {
             view?.stopAnimateBottomSpinner()
+            self.alertPresenter.presentErrorWithTryAgainButton(title: "Something went wrong", error: error) { [weak self] in
+                await self?.loadMoreCharacters()
+            }
         }
     }
 

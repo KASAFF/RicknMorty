@@ -13,7 +13,7 @@ struct SectionHeaderView: View {
     var body: some View {
         HStack {
             Text(text)
-                .font(.headline)
+                .font(.system(size: 17, weight: .medium))
                 .foregroundColor(.white)
             Spacer()
         }

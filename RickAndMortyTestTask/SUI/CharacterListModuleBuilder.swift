@@ -13,9 +13,11 @@ final class CharacterListModuleBuilder {
         let networkManager = NetworkManager()
         let rickNmortyLoader = RickNMortyLoader(networkManager: networkManager)
         let imageLoader = ImageLoader(networkManager: networkManager)
+        let alertPresenter = AlertPresenter(viewController: nil)
 
-        let presenter = CharacterListPresenter(rickNMortyLoader: rickNmortyLoader, imageLoader: imageLoader)
+        let presenter = CharacterListPresenter(rickNMortyLoader: rickNmortyLoader, imageLoader: imageLoader, alertPresenter: alertPresenter)
         let vc = CharacterListViewController(presenter: presenter)
+        alertPresenter.viewController = vc
         presenter.view = vc
 
         return vc

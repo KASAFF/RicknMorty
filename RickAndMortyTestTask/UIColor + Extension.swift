@@ -16,4 +16,6 @@ extension UIColor {
 enum CustomColor {
     static var customBackgroundColor: Color? { return Color("blackBackground") }
     static var cellBackgroundColor: Color? { return Color("blendBlack") }
+    static var textGreen: Color? { return Color("greenTextColor") }
+    static var textGray: Color? { return Color("grayTextColor") }
 }

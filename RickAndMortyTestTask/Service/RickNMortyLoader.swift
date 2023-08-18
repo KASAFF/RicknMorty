@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IRickNMortyLoader {
-    func fetchCharacters() async -> [Character]
+    func fetchCharacters() async throws -> [Character]
     func fetchEpisodesForCharacter(_ character: Character) async throws -> [EpisodeResponse]
 }
 
@@ -22,7 +22,7 @@ final actor RickNMortyLoader: IRickNMortyLoader {
 
     private var currentPage = 1
 
-    func fetchCharacters() async -> [Character] {
+    func fetchCharacters() async throws -> [Character] {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "rickandmortyapi.com"
@@ -37,8 +37,7 @@ final actor RickNMortyLoader: IRickNMortyLoader {
             currentPage += 1
             return response.results
         } catch {
-            print(error)
-            return []
+            throw RickMortyError.invalidResponse
         }
     }
 
@@ -54,8 +53,7 @@ final actor RickNMortyLoader: IRickNMortyLoader {
                 let epsiode: EpisodeResponse = try await networkManager.fetchDecoded(with: url)
                 episodes.append(epsiode)
             } catch {
-                print(error)
-                throw error
+                throw RickMortyError.fetchingEpisodesError
             }
         }
 

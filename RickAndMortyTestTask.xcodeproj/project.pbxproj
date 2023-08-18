@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB483E032A8F735E001A40AC /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB483E022A8F735E001A40AC /* AlertPresenter.swift */; };
+		AB483E052A8F7635001A40AC /* Task+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB483E042A8F7635001A40AC /* Task+Extension.swift */; };
 		ABCAE3F72A8E26B500BEE310 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE3F62A8E26B500BEE310 /* AppDelegate.swift */; };
 		ABCAE3F92A8E26B500BEE310 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE3F82A8E26B500BEE310 /* SceneDelegate.swift */; };
 		ABCAE3FB2A8E26B500BEE310 /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE3FA2A8E26B500BEE310 /* CharacterListViewController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB483E022A8F735E001A40AC /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		AB483E042A8F7635001A40AC /* Task+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Extension.swift"; sourceTree = "<group>"; };
 		ABCAE3F32A8E26B500BEE310 /* RickAndMortyTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCAE3F62A8E26B500BEE310 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABCAE3F82A8E26B500BEE310 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,7 +99,6 @@
 				ABCAE4162A8E348300BEE310 /* Core */,
 				ABCAE4172A8E348C00BEE310 /* Service */,
 				ABCAE4282A8EA07F00BEE310 /* Model */,
-				ABCAE42F2A8ED35100BEE310 /* SectionHeaderView.swift */,
 				ABCAE40C2A8E2BDF00BEE310 /* UIColor + Extension.swift */,
 				ABCAE41A2A8E415F00BEE310 /* UIImage + Extension.swift */,
 				ABCAE3FF2A8E26B600BEE310 /* Assets.xcassets */,
@@ -119,6 +122,7 @@
 			children = (
 				ABCAE4122A8E33F400BEE310 /* RickNMortyLoader.swift */,
 				ABCAE4182A8E3BCA00BEE310 /* ImageLoader.swift */,
+				AB483E042A8F7635001A40AC /* Task+Extension.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				ABCAE3FA2A8E26B500BEE310 /* CharacterListViewController.swift */,
+				AB483E022A8F735E001A40AC /* AlertPresenter.swift */,
 				ABCAE4292A8EB58F00BEE310 /* CharacterListPresenter.swift */,
 				ABCAE40A2A8E27FC00BEE310 /* CharacterCardCell.swift */,
 			);
@@ -136,6 +141,7 @@
 		ABCAE4252A8E9C6E00BEE310 /* SUI */ = {
 			isa = PBXGroup;
 			children = (
+				ABCAE42F2A8ED35100BEE310 /* SectionHeaderView.swift */,
 				ABCAE41D2A8E4BB500BEE310 /* DetailsView.swift */,
 				ABCAE4232A8E9C1900BEE310 /* EpisodesView.swift */,
 				ABCAE42D2A8EC2EA00BEE310 /* DetailsViewModel.swift */,
@@ -233,6 +239,7 @@
 				ABCAE3FB2A8E26B500BEE310 /* CharacterListViewController.swift in Sources */,
 				ABCAE4132A8E33F400BEE310 /* RickNMortyLoader.swift in Sources */,
 				ABCAE4302A8ED35200BEE310 /* SectionHeaderView.swift in Sources */,
+				AB483E032A8F735E001A40AC /* AlertPresenter.swift in Sources */,
 				ABCAE42A2A8EB58F00BEE310 /* CharacterListPresenter.swift in Sources */,
 				ABCAE41E2A8E4BB500BEE310 /* DetailsView.swift in Sources */,
 				ABCAE4222A8E9B1100BEE310 /* InfoView.swift in Sources */,
@@ -240,6 +247,7 @@
 				ABCAE4202A8E9AD100BEE310 /* OriginView.swift in Sources */,
 				ABCAE4242A8E9C1900BEE310 /* EpisodesView.swift in Sources */,
 				ABCAE42C2A8EB89A00BEE310 /* CharacterListModuleBuilder.swift in Sources */,
+				AB483E052A8F7635001A40AC /* Task+Extension.swift in Sources */,
 				ABCAE3F72A8E26B500BEE310 /* AppDelegate.swift in Sources */,
 				ABCAE4112A8E331700BEE310 /* RickMortyError.swift in Sources */,
 				ABCAE41B2A8E415F00BEE310 /* UIImage + Extension.swift in Sources */,

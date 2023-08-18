@@ -23,7 +23,7 @@ final class DetailsViewModel: ObservableObject {
     @Published private (set) var episodes = [EpisodeResponse]()
     @Published private (set) var characterImage: Image? = CustomImage.placeholder
     @Published private (set) var characterStatusText = ""
-    @Published private (set) var characterStatusColor: Color = .gray
+    @Published private (set) var characterStatusColor: Color? = .gray
 
     let imageLoader: ImageLoaderProtocol
     let rickNMortyLoader: IRickNMortyLoader
@@ -58,7 +58,7 @@ final class DetailsViewModel: ObservableObject {
             switch character.status {
             case .alive:
                 characterStatusText = "Alive"
-                characterStatusColor = .green
+                characterStatusColor = CustomColor.textGreen
             case .dead:
                 characterStatusText = "Dead"
                 characterStatusColor = .red

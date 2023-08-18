@@ -15,12 +15,14 @@ struct InfoView: View {
             VStack {
                 HStack {
                     Text("Species:")
+                        .foregroundColor(CustomColor.textGray)
                     Spacer()
                     Text(character.species)
                 }
 
                 HStack {
                     Text("Type:")
+                        .foregroundColor(CustomColor.textGray)
                     Spacer()
                     Text(!character.type.isEmpty ? character.type : "None")
                 }
@@ -28,6 +30,7 @@ struct InfoView: View {
 
                 HStack {
                     Text("Gender: ")
+                        .foregroundColor(CustomColor.textGray)
                     Spacer()
                     Text(character.gender)
                 }

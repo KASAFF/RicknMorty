@@ -17,42 +17,57 @@ struct DetailsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .center) {
-                viewModel.characterImage?
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(16)
-                    .frame(width: 150, height: 150)
-                    .padding(.bottom)
-                Text(viewModel.character.name)
-                    .font(.headline)
-                    .foregroundColor(.white)
-                Text(viewModel.characterStatusText)
-                    .foregroundColor(viewModel.characterStatusColor)
-            }
-
-            Section {
-                InfoView(character: viewModel.character)
-            } header: {
-                SectionHeaderView(text: "Info")
-            }
-
-            Section {
-                OriginView(character: viewModel.character)
-            } header: {
-                SectionHeaderView(text: "Origin")
-            }
-
-            Section {
-                ForEach(viewModel.episodes, id: \.self) { episode in
-                    EpisodesView(episodeResponse: episode)
+            Group {
+                VStack(alignment: .center) {
+                    viewModel.characterImage?
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(16)
+                        .frame(width: 150, height: 150)
+                        .padding(.bottom, 12)
+                    Text(viewModel.character.name)
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.bottom, 2)
+                    Text(viewModel.characterStatusText)
+                        .foregroundColor(viewModel.characterStatusColor)
                 }
-            } header: {
-                SectionHeaderView(text: "Episodes")
+                .padding(.bottom)
+
+                Section {
+                    InfoView(character: viewModel.character)
+                } header: {
+                    SectionHeaderView(text: "Info")
+                }
+                .padding(.bottom)
+
+                Section {
+                    OriginView(character: viewModel.character)
+                } header: {
+                    SectionHeaderView(text: "Origin")
+                }
+                .padding(.bottom)
+
+
+                Section {
+                    LazyVStack {
+                        ForEach(viewModel.episodes, id: \.self) { episode in
+                            EpisodesView(episodeResponse: episode)
+                        }
+                    }
+                } header: {
+                    SectionHeaderView(text: "Episodes")
+                }
+                .padding(.bottom)
             }
+            .padding(.horizontal)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Spacer()
+                }
+            }
+            .frame(maxHeight: .infinity)
         }
-        .frame(maxHeight: .infinity)
-        .padding(.horizontal)
     }
 }
 
