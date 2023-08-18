@@ -7,13 +7,6 @@
 
 import Foundation
 
-protocol CharacterListPresenterProtocol: AnyObject {
-    func viewDidLoad() async
-    func loadCharacterImage(for character: Character) async -> Data?
-    func loadMoreCharacters() async
-    func isShouldLoadMoreChars(for indexPath: IndexPath) -> Bool
-}
-
 final class CharacterListPresenter: CharacterListPresenterProtocol {
     var view: CharacterListViewProtocol?
     private let rickNMortyLoader: IRickNMortyLoader

@@ -7,17 +7,6 @@
 
 import UIKit
 
-struct AlertModel {
-    let title: String
-    let message: String?
-    let actions: [UIAlertAction]
-}
-
-protocol AlertPresenterProtocol {
-    func presentAlert(model: AlertModel)
-    func presentErrorWithTryAgainButton(title: String, error: Error, retryHandler: @escaping () async -> Void)
-}
-
 final class AlertPresenter: AlertPresenterProtocol {
     var viewController: UIViewController?
     private weak var alertController: UIAlertController?

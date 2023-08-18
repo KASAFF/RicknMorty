@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AB483E032A8F735E001A40AC /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB483E022A8F735E001A40AC /* AlertPresenter.swift */; };
+		AB4A1C532A90229C00E424E4 /* CharacterListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A1C522A90229C00E424E4 /* CharacterListPresenterProtocol.swift */; };
+		AB4A1C552A9022C700E424E4 /* CharacterListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A1C542A9022C700E424E4 /* CharacterListViewProtocol.swift */; };
+		AB4A1C572A9022EE00E424E4 /* AlertPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A1C562A9022EE00E424E4 /* AlertPresenterProtocol.swift */; };
+		AB4A1C592A9022FC00E424E4 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A1C582A9022FC00E424E4 /* AlertModel.swift */; };
 		AB591B852A8F990C00F080C9 /* CustomNavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB591B842A8F990C00F080C9 /* CustomNavigationBackButton.swift */; };
 		AB591B872A8FF72C00F080C9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB591B862A8FF72C00F080C9 /* LoadingView.swift */; };
 		ABCAE3F72A8E26B500BEE310 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCAE3F62A8E26B500BEE310 /* AppDelegate.swift */; };
@@ -36,6 +40,10 @@
 
 /* Begin PBXFileReference section */
 		AB483E022A8F735E001A40AC /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		AB4A1C522A90229C00E424E4 /* CharacterListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListPresenterProtocol.swift; sourceTree = "<group>"; };
+		AB4A1C542A9022C700E424E4 /* CharacterListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewProtocol.swift; sourceTree = "<group>"; };
+		AB4A1C562A9022EE00E424E4 /* AlertPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterProtocol.swift; sourceTree = "<group>"; };
+		AB4A1C582A9022FC00E424E4 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		AB591B842A8F990C00F080C9 /* CustomNavigationBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBackButton.swift; sourceTree = "<group>"; };
 		AB591B862A8FF72C00F080C9 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		ABCAE3F32A8E26B500BEE310 /* RickAndMortyTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				AB483E022A8F735E001A40AC /* AlertPresenter.swift */,
+				AB4A1C582A9022FC00E424E4 /* AlertModel.swift */,
+				AB4A1C562A9022EE00E424E4 /* AlertPresenterProtocol.swift */,
 				ABCAE41C2A8E4A3500BEE310 /* CharacterListModule */,
 				ABCAE4252A8E9C6E00BEE310 /* DetailViewModule(SUI) */,
 				AB483E062A8F7C1C001A40AC /* Components */,
@@ -123,6 +133,14 @@
 				ABCAE42B2A8EB89A00BEE310 /* CharacterListModuleBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		AB4A1C512A90227500E424E4 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AB4A1C522A90229C00E424E4 /* CharacterListPresenterProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		ABCAE3EA2A8E26B400BEE310 = {
@@ -179,7 +197,9 @@
 		ABCAE41C2A8E4A3500BEE310 /* CharacterListModule */ = {
 			isa = PBXGroup;
 			children = (
+				AB4A1C512A90227500E424E4 /* Protocol */,
 				ABCAE3FA2A8E26B500BEE310 /* CharacterListViewController.swift */,
+				AB4A1C542A9022C700E424E4 /* CharacterListViewProtocol.swift */,
 				ABCAE40A2A8E27FC00BEE310 /* CharacterCardCell.swift */,
 				ABCAE4292A8EB58F00BEE310 /* CharacterListPresenter.swift */,
 			);
@@ -276,6 +296,7 @@
 			files = (
 				ABCAE4152A8E347400BEE310 /* Character.swift in Sources */,
 				ABCAE42E2A8EC2EA00BEE310 /* DetailsViewModel.swift in Sources */,
+				AB4A1C532A90229C00E424E4 /* CharacterListPresenterProtocol.swift in Sources */,
 				ABCAE4272A8EA06900BEE310 /* Episode.swift in Sources */,
 				ABCAE40F2A8E32D500BEE310 /* NetworkManager.swift in Sources */,
 				ABCAE4192A8E3BCB00BEE310 /* ImageLoader.swift in Sources */,
@@ -284,15 +305,18 @@
 				ABCAE4302A8ED35200BEE310 /* SectionHeaderView.swift in Sources */,
 				AB483E032A8F735E001A40AC /* AlertPresenter.swift in Sources */,
 				ABCAE42A2A8EB58F00BEE310 /* CharacterListPresenter.swift in Sources */,
+				AB4A1C572A9022EE00E424E4 /* AlertPresenterProtocol.swift in Sources */,
 				ABCAE41E2A8E4BB500BEE310 /* DetailsView.swift in Sources */,
 				ABCAE4222A8E9B1100BEE310 /* InfoView.swift in Sources */,
 				ABCAE40B2A8E27FC00BEE310 /* CharacterCardCell.swift in Sources */,
 				ABCAE4202A8E9AD100BEE310 /* OriginView.swift in Sources */,
+				AB4A1C592A9022FC00E424E4 /* AlertModel.swift in Sources */,
 				ABCAE4242A8E9C1900BEE310 /* EpisodesView.swift in Sources */,
 				ABCAE42C2A8EB89A00BEE310 /* CharacterListModuleBuilder.swift in Sources */,
 				ABCAE3F72A8E26B500BEE310 /* AppDelegate.swift in Sources */,
 				ABCAE4112A8E331700BEE310 /* RickMortyError.swift in Sources */,
 				AB591B852A8F990C00F080C9 /* CustomNavigationBackButton.swift in Sources */,
+				AB4A1C552A9022C700E424E4 /* CharacterListViewProtocol.swift in Sources */,
 				ABCAE41B2A8E415F00BEE310 /* UIImage + Extension.swift in Sources */,
 				ABCAE3F92A8E26B500BEE310 /* SceneDelegate.swift in Sources */,
 				ABCAE40D2A8E2BDF00BEE310 /* UIColor + Extension.swift in Sources */,

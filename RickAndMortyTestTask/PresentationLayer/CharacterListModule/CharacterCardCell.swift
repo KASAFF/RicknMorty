@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharacterCardCell: UICollectionViewCell {
+final class CharacterCardCell: UICollectionViewCell {
 
     lazy var personImageView: UIImageView = {
         let imageView = UIImageView()

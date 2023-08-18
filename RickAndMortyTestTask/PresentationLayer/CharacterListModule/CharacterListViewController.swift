@@ -8,16 +8,7 @@
 import UIKit
 import SwiftUI
 
-protocol CharacterListViewProtocol: AnyObject {
-    func updateDatasource(with characters: [Character])
-    func startAnimateBottomSpinner()
-    func stopAnimateBottomSpinner()
-
-    func animateInitialLoading()
-    func intialLoadingComplete()
-}
-
-class CharacterListViewController: UIViewController, CharacterListViewProtocol {
+final class CharacterListViewController: UIViewController, CharacterListViewProtocol {
 
     private enum Section {
         case main
