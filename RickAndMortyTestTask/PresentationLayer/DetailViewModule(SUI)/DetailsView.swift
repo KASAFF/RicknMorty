@@ -65,11 +65,9 @@ struct DetailsView: View {
                 
             }
 
-
-
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     CustomNavigationBackButton()
                 }
             }
@@ -81,7 +79,7 @@ struct DetailsView: View {
                     secondaryButton: .default(Text("Try again"),
                                               action: viewModel.onRetryButton)
                 )
-                
+
             }
 
             if viewModel.isLoading {
