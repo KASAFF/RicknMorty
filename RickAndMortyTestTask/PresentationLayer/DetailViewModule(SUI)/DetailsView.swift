@@ -62,6 +62,12 @@ struct DetailsView: View {
             }
             .padding(.horizontal)
         }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                CustomNavigationBackButton()
+            }
+        }
         .alert(isPresented: $viewModel.showingError) {
             Alert(
                 title: Text(viewModel.errorTitle),

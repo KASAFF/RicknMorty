@@ -154,8 +154,8 @@ extension CharacterListViewController: UICollectionViewDelegate {
         let detailsCharactherView = DetailsView(character: character)
         let host = UIHostingController(rootView: detailsCharactherView)
         host.view.backgroundColor = .customBackgroundColor
-
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        host.navigationItem.hidesBackButton = true
+        host.navigationItem.largeTitleDisplayMode = .never
 
         navigationController?.pushViewController(host, animated: true)
     }
